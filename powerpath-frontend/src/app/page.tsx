@@ -1,101 +1,132 @@
+"use client";
+
+import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import ParceiroCard from "@/components/ParceiroCard/ParceiroCard";
 
-export default function Home() {
+const HomePage = () => {
+  const parceiros = [
+    { name: "SAP", description: "Criadora de softwares de gestão de empresas.", logo: "/image/sap.png" },
+    { name: "FIA Fórmula E", description: "Promotora de inovação no automobilismo sustentável.", logo: "/image/FIA.png" },
+    { name: "Mahindra Racing", description: "Líder no automobilismo indiano e sustentável.", logo: "/image/Mahindra.jpg" },
+    { name: "Ultragaz", description: "Soluções de energia há mais de 80 anos.", logo: "/image/Ultragaz.png" },
+    { name: "Ultracargo", description: "Referência em armazenagem de granéis líquidos.", logo: "/image/Ultracargo.png" },
+  ];
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main>
+      <section className="banner">
+        <h2>Transforme sua jornada em um impacto positivo</h2>
+        <p>PowerPath: Simplificando o uso de veículos elétricos para um futuro sustentável.</p>
+        <div>
+          <button onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}>
+            Saiba Mais
+          </button>
+          <Link href="/funcionalidades">
+            <button>Funcionalidades</button>
+          </Link>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+      </section>
+      <section id="partners">
+        <h3>Empresas que acreditam no PowerPath</h3>
+        <div className="partners-grid">
+          {parceiros.map((parceiro, index) => (
+            <ParceiroCard
+              key={index}
+              logo={parceiro.logo}
+              name={parceiro.name}
+              description={parceiro.description}
+            />
+          ))}
+        </div>
+      </section>
+      <section id="about">
+        <h3>O que é PowerPath?</h3>
+        <div className="about-block">
           <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            src="/image/car-electric.jpg"
+            alt="Veículo elétrico carregando"
+            width={600}
+            height={400}
+            className="about-image"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+          <div className="about-text">
+            <p>
+              O <strong>PowerPath</strong> é a solução definitiva para quem quer adotar um estilo de vida sustentável e
+              eficiente com veículos elétricos. Com nosso aplicativo, você pode localizar rapidamente estações de
+              recarga, planejar rotas inteligentes e monitorar o impacto ambiental positivo das suas viagens.
+            </p>
+            <p>
+              Cada funcionalidade foi pensada para simplificar sua experiência, tornando o uso de veículos elétricos
+              mais acessível e prático. Desde a escolha da estação de recarga até a otimização de consumo energético,
+              o PowerPath cuida de tudo.
+            </p>
+          </div>
+        </div>
+        <div className="about-block reverse">
+          <div className="about-text">
+            <p>
+              Nosso <strong>mapa interativo</strong> é projetado para oferecer informações em tempo real, incluindo
+              status de disponibilidade de carregadores, tipos de carregadores (rápido, normal) e custos associados.
+              Use filtros avançados para encontrar a estação ideal para suas necessidades.
+            </p>
+            <p>
+              Além disso, você pode receber notificações quando uma estação nas proximidades estiver disponível,
+              economizando tempo e aumentando a eficiência das suas viagens.
+            </p>
+          </div>
           <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+            src="/image/charging-station.jpg"
+            alt="Estação de recarga para veículos elétricos"
+            width={600}
+            height={400}
+            className="about-image"
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        </div>
+        <div className="about-block">
           <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+            src="/image/eco-friendly.jpg"
+            alt="Impacto ambiental positivo"
+            width={600}
+            height={400}
+            className="about-image"
           />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          <div className="about-text">
+            <p>
+              O impacto ambiental é uma prioridade para nós. O PowerPath oferece relatórios detalhados que mostram sua
+              economia de CO₂ em comparação com veículos a combustão. Cada quilômetro percorrido é um passo em direção
+              a um futuro mais limpo e sustentável.
+            </p>
+            <p>
+              Quer compartilhar sua contribuição para o planeta? Nossa plataforma permite que você compartilhe seus
+              resultados com amigos e familiares, incentivando mais pessoas a aderirem à mobilidade elétrica.
+            </p>
+          </div>
+        </div>
+        <div className="about-block reverse">
+          <div className="about-text">
+            <p>
+              Para tornar tudo ainda mais interessante, o <strong>PowerPath</strong> conta com um sistema de{" "}
+              <strong>gamificação</strong>. Complete desafios como “Viaje 100 km sem emissões” ou “Use um ponto de
+              recarga solar” para ganhar recompensas exclusivas. Quanto mais você utiliza o aplicativo, mais você ganha.
+            </p>
+            <p>
+              Torne-se um exemplo de sustentabilidade e inspire outros usuários. Acompanhe sua evolução no ranking da
+              comunidade e compartilhe suas conquistas.
+            </p>
+          </div>
+          <Image
+            src="/image/gamification.jpg"
+            alt="Sistema de gamificação"
+            width={600}
+            height={400}
+            className="about-image"
+          />
+        </div>
+      </section>
+    </main>
   );
-}
+};
+
+export default HomePage;

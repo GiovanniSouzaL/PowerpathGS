@@ -2,20 +2,429 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+/* Paleta de Cores Personalizadas */
+@layer utilities {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --primary-green: #2a9d8f;
+    --secondary-yellow: #e9c46a;
+    --footer-bg: #333;
+    --text-light: #fff;
+    --background-light: #f4f4f4;
+    --text-dark: #333;
+    --card-border: #2a9d8f;
+    --card-hover-border: #e9c46a;
+  }
+
+  .bg-primary-green {
+    background-color: var(--primary-green);
+  }
+
+  .text-primary-green {
+    color: var(--primary-green);
+  }
+
+  .border-primary-green {
+    border-color: var(--primary-green);
+  }
+
+  .bg-secondary-yellow {
+    background-color: var(--secondary-yellow);
+  }
+
+  .text-secondary-yellow {
+    color: var(--secondary-yellow);
+  }
+
+  .border-secondary-yellow {
+    border-color: var(--secondary-yellow);
+  }
+
+  .bg-footer-bg {
+    background-color: var(--footer-bg);
+  }
+
+  .text-footer-bg {
+    color: var(--footer-bg);
+  }
+
+  .bg-background-light {
+    background-color: var(--background-light);
+  }
+
+  .text-text-light {
+    color: var(--text-light);
+  }
+
+  .text-text-dark {
+    color: var(--text-dark);
+  }
+
+  .border-card-border {
+    border-color: var(--card-border);
+  }
+
+  .border-card-hover-border {
+    border-color: var(--card-hover-border);
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* Estilos Gerais */
+@layer base {
+  body {
+    @apply m-0 p-0 font-sans bg-background-light text-text-dark;
+  }
+
+  h1, h2, h3, h4, h5, h6, p, ul, ol, li, button {
+    @apply m-0 p-0 box-border;
+  }
 }
+/* Titulos */
+h1 {
+  @apply text-5xl font-bold text-center text-gray-800 leading-tight;
+}
+
+h2 {
+  @apply text-4xl font-semibold text-center text-gray-700 leading-snug;
+}
+
+h3 {
+  @apply text-3xl font-medium text-center text-gray-600 leading-normal;
+}
+
+h4, h5, h6 {
+  @apply text-xl font-normal text-center text-gray-500 leading-relaxed;
+}
+
+/* Estilos para o Cabeçalho */
+@layer components {
+  .header {
+    @apply bg-primary-green text-text-light w-full fixed top-0 left-0 shadow-md z-50 py-2;
+  }
+
+  .header-container {
+    @apply max-w-screen-xl mx-auto flex items-center justify-between px-5;
+  }
+
+  .logo {
+    @apply text-xl font-bold text-text-light;
+  }
+
+  .logo a {
+    @apply no-underline text-inherit;
+  }
+
+  .nav {
+    @apply flex items-center;
+  }
+
+  .nav-link {
+    @apply text-text-light ml-4 text-base flex items-center gap-2 transition-colors duration-300;
+  }
+
+  .nav-link:hover {
+    @apply text-secondary-yellow;
+  }
+
+  .icon {
+    @apply text-lg;
+  }
+}
+
+/* Estilos para o Banner */
+@layer components {
+  .banner {
+    @apply mt-10 bg-primary-green text-text-light text-center py-20 mb-10;
+  }
+
+  .banner h2 {
+    @apply text-4xl font-bold mb-5;
+  }
+
+  .banner p {
+    @apply text-xl mt-2 mx-auto max-w-2xl;
+  }
+
+  .banner button {
+    @apply mt-8 mx-2 py-3 px-6 text-base rounded cursor-pointer;
+  }
+
+  .banner button:first-child {
+    @apply bg-yellow-400 text-black;
+  }
+
+  .banner button:last-child {
+    @apply bg-green-700 text-white;
+  }
+
+  .banner button:hover {
+    @apply opacity-90;
+  }
+}
+
+/* Outros Estilos */
+@layer components {
+  .about-block {
+    @apply flex flex-wrap items-center justify-center gap-8 mb-16;
+  }
+
+  .about-image {
+    @apply rounded shadow-md max-w-full h-auto w-full md:w-1/4;
+  }
+
+  .about-text {
+    @apply max-w-lg leading-relaxed text-base text-center text-gray-800 w-full md:w-1/2;
+  }
+
+  .about-text p {
+    @apply mb-4;
+  }
+
+  .about-text h2 {
+    @apply text-3xl font-extrabold text-gray-900 mb-4 text-center;
+  }
+
+  .about-text strong {
+    @apply text-primary-green font-bold;
+  }
+}
+
+/* Empresas Parceiras */
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.partner-card {
+  background-color: #faeba8; 
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.partner-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.partner-card h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #ffc107; 
+}
+
+.partner-card img {
+  max-width: 100px;
+  margin: 0 auto 1rem auto;
+}
+
+/* Rodapé de Seção */
+.section-footer {
+  margin-top: 2rem;
+  text-align: center;
+  color: #32a852;
+}
+
+
+/* Rodapé */
+footer {
+  background-color: #007acc;
+  color: white;
+  text-align: center;
+  padding: 1.5rem 2rem;
+}
+
+footer p {
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  font-size: 0.9rem;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+
+/* Estilos para o Rodapé */
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  width: 100%;
+  text-align: center;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.social-links {
+  margin-top: 10px;
+}
+
+.social-links a {
+  color: #fff;
+  margin: 0 10px;
+  font-size: 1rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: #2a9d8f; 
+}
+
+.social-icon {
+  font-size: 1.2rem;
+}
+/* Estilos para a Página de Funcionalidades */
+.funcionalidades-container {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  color: #2a9d8f;
+  margin-bottom: 40px;
+}
+
+.funcionalidades-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Estilos para o Card de Funcionalidade */
+.card-funcionalidade {
+  background-color: #fff;
+  border: 2px solid #2a9d8f;
+  border-radius: 12px;
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-funcionalidade:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.icon {
+  font-size: 2rem;
+  color: #2a9d8f;
+  margin-bottom: 15px;
+}
+
+
+.card-title {
+  font-size: 1.3rem;
+  color: #2a9d8f;
+  margin-bottom: 10px;
+}
+
+.card-description {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+
+
+/* Estilos para a Página de Equipe */
+.team-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background-color: var(--background-light);
+}
+
+.team-title {
+  font-size: 2.5rem;
+  color: var(--primary-green);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.team-card {
+  background-color: var(--text-light);
+  border: 2px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.team-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  border-color: var(--card-hover-border);
+}
+
+.team-image {
+  border-radius: 50%;
+  margin: 0 auto;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+
+.team-name {
+  font-size: 1.2rem;
+  color: var(--primary-green);
+  margin-bottom: 8px;
+}
+
+.team-info {
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  margin-bottom: 5px;
+}
+
+.team-links a {
+  font-size: 0.9rem;
+  color: var(--primary-green);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.team-links a:hover {
+  color: var(--secondary-yellow);
+}
+
