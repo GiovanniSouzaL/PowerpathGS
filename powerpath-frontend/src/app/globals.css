@@ -16,27 +16,27 @@
   }
 
   .bg-primary-green {
-    background-color: var(--primary-green);
+    background-color: #2a9d8f;
   }
 
   .text-primary-green {
-    color: var(--primary-green);
+    color: #2a9d8f;
   }
 
   .border-primary-green {
-    border-color: var(--primary-green);
+    border-color: #2a9d8f;
   }
 
   .bg-secondary-yellow {
-    background-color: var(--secondary-yellow);
+    background-color: #e9c46a;
   }
 
   .text-secondary-yellow {
-    color: var(--secondary-yellow);
+    color: #e9c46a;
   }
 
   .border-secondary-yellow {
-    border-color: var(--secondary-yellow);
+    border-color: #e9c46a;
   }
 
   .bg-footer-bg {
@@ -128,6 +128,52 @@ h4, h5, h6 {
   .icon {
     @apply text-lg;
   }
+  .funcionalidades-container {
+    @apply p-6 space-y-8;
+  }
+
+  /* Título da página */
+  .page-title {
+    @apply text-3xl font-bold text-center text-gray-800;
+  }
+
+  /* Grid de funcionalidades */
+  .funcionalidades-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+
+  /* Botão "Entrar na Conta" */
+  .login-button {
+    @apply block mx-auto px-6 py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition;
+  }
+
+  /* Modal de login */
+  .login-modal {
+    @apply fixed inset-0 flex items-center justify-center bg-black bg-opacity-50;
+  }
+
+  /* Conteúdo do modal de login */
+  .login-content {
+    @apply bg-white rounded-lg p-8 shadow-lg w-96;
+  }
+
+  /* Campos de input no modal */
+  .login-input {
+    @apply w-full p-3 border border-gray-300 rounded-md mb-4;
+  }
+
+  /* Botão "Entrar" no modal */
+  .submit-button {
+    @apply w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition;
+  }
+
+  /* Botão "Fechar" no modal */
+  .close-button {
+    @apply w-full mt-4 bg-gray-300 py-2 rounded-md hover:bg-gray-400 transition;
+  }
+  .dashboard-container {
+    @apply min-h-screen bg-gray-100 space-y-6 pt-20 px-6;
+  }
 }
 
 /* Estilos para o Banner */
@@ -190,241 +236,178 @@ h4, h5, h6 {
 
 /* Empresas Parceiras */
 .partners-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  @apply grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-8;
 }
 
 .partner-card {
-  background-color: #faeba8; 
-  border-radius: 8px;
-  padding: 1.5rem;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  @apply bg-yellow-200 rounded-lg p-6 shadow-md text-center transition-transform duration-300 ease-in-out;
 }
 
 .partner-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+  @apply -translate-y-1 shadow-lg;
 }
 
 .partner-card h4 {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-  color: #ffc107; 
+  @apply text-lg font-bold mb-2 text-black;
 }
 
 .partner-card img {
-  max-width: 100px;
-  margin: 0 auto 1rem auto;
+  @apply max-w-[100px] mx-auto mb-4;
 }
 
 /* Rodapé de Seção */
 .section-footer {
-  margin-top: 2rem;
-  text-align: center;
-  color: #32a852;
+  @apply mt-8 text-center text-green-600;
 }
-
 
 /* Rodapé */
 footer {
-  background-color: #007acc;
-  color: white;
-  text-align: center;
-  padding: 1.5rem 2rem;
+  @apply bg-blue-700 text-white text-center py-6 px-8;
 }
 
 footer p {
-  font-size: 0.9rem;
+  @apply text-sm;
 }
 
 footer a {
-  color: white;
-  text-decoration: none;
-  margin: 0 0.5rem;
-  font-size: 0.9rem;
+  @apply text-white no-underline mx-2 text-sm;
 }
 
 footer a:hover {
-  text-decoration: underline;
+  @apply underline;
 }
-
 
 /* Estilos para o Rodapé */
 .footer {
-  background-color: #333;
-  color: #fff;
-  padding: 20px 0;
-  width: 100%;
-  text-align: center;
+  @apply bg-gray-800 text-white py-5 w-full text-center;
 }
 
 .footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @apply max-w-[1200px] mx-auto px-5 flex flex-col items-center;
 }
 
 .footer p {
-  margin: 0;
-  font-size: 0.9rem;
+  @apply m-0 text-sm;
 }
 
 .social-links {
-  margin-top: 10px;
+  @apply mt-2;
 }
 
 .social-links a {
-  color: #fff;
-  margin: 0 10px;
-  font-size: 1rem;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  transition: color 0.3s;
+  @apply text-white mx-2 text-base no-underline flex items-center gap-1 transition-colors duration-300;
 }
 
 .social-links a:hover {
-  color: #2a9d8f; 
+  @apply text-teal-600;
 }
 
 .social-icon {
-  font-size: 1.2rem;
+  @apply text-lg;
 }
+
 /* Estilos para a Página de Funcionalidades */
 .funcionalidades-container {
-  padding: 80px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
+  @apply py-20 px-5 max-w-[1200px] mx-auto text-center;
 }
 
 .page-title {
-  font-size: 2.5rem;
-  color: #2a9d8f;
-  margin-bottom: 40px;
+  @apply text-4xl text-teal-600 mb-10;
 }
 
 .funcionalidades-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+  @apply flex flex-wrap gap-5 justify-center;
 }
 
 /* Estilos para o Card de Funcionalidade */
 .card-funcionalidade {
-  background-color: #fff;
-  border: 2px solid #2a9d8f;
-  border-radius: 12px;
-  padding: 20px;
-  width: 250px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
+  @apply bg-white border-2 border-teal-600 rounded-lg p-5 w-[250px] text-center shadow-md transition-transform duration-200;
 }
 
 .card-funcionalidade:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  @apply scale-105 shadow-lg;
 }
 
 .icon {
-  font-size: 2rem;
-  color: #2a9d8f;
-  margin-bottom: 15px;
+  @apply text-2xl text-teal-600 mb-4;
 }
 
-
 .card-title {
-  font-size: 1.3rem;
-  color: #2a9d8f;
-  margin-bottom: 10px;
+  @apply text-lg text-teal-600 mb-2;
 }
 
 .card-description {
-  font-size: 0.9rem;
-  color: #333;
+  @apply text-sm text-gray-800;
 }
-
-
 
 /* Estilos para a Página de Equipe */
 .team-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 40px 20px;
-  background-color: var(--background-light);
+  @apply flex flex-col items-center justify-center min-h-screen py-10 px-5 bg-gray-50;
 }
 
 .team-title {
-  font-size: 2.5rem;
-  color: var(--primary-green);
-  margin-bottom: 30px;
-  text-align: center;
+  @apply text-4xl text-yellow-600 mb-7 text-center;
 }
 
 .team-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  @apply flex flex-wrap justify-center gap-5;
 }
 
 .team-card {
-  background-color: var(--text-light);
-  border: 2px solid var(--card-border);
-  border-radius: 12px;
-  padding: 20px;
-  width: 250px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  @apply bg-white border-2 border-gray-300 rounded-lg p-5 w-[250px] text-center shadow-md transition-transform duration-200;
 }
 
 .team-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  border-color: var(--card-hover-border);
+  @apply scale-105 shadow-lg border-teal-500;
 }
 
 .team-image {
-  border-radius: 50%;
-  margin: 0 auto;
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
+  @apply rounded-lg mx-auto w-[120px] h-[120px] object-cover;
 }
 
 .team-name {
-  font-size: 1.2rem;
-  color: var(--primary-green);
-  margin-bottom: 8px;
+  @apply text-lg text-teal-600 mb-2;
 }
 
 .team-info {
-  font-size: 0.9rem;
-  color: var(--text-dark);
-  margin-bottom: 5px;
+  @apply text-sm text-gray-700 mb-1;
 }
 
 .team-links a {
-  font-size: 0.9rem;
-  color: var(--primary-green);
-  text-decoration: none;
-  transition: color 0.3s;
+  @apply text-sm text-green-600 no-underline transition-colors duration-300;
 }
 
 .team-links a:hover {
-  color: var(--secondary-yellow);
+  @apply text-teal-400;
 }
 
+
+/* Cartões */
+.card {
+  @apply bg-white shadow-md rounded-lg p-6;
+}
+
+.card-title {
+  @apply text-lg font-semibold text-gray-700 mb-2;
+}
+
+.card-value {
+  @apply text-2xl font-bold mb-1;
+}
+
+.card-subtitle {
+  @apply text-sm text-gray-500;
+}
+
+/* Lista de Atividades */
+.activity-list {
+  @apply divide-y divide-gray-200;
+}
+
+.activity-item {
+  @apply py-3;
+}
+
+.activity-time {
+  @apply text-sm text-gray-500;
+}

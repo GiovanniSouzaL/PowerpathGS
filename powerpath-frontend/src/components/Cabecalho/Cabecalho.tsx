@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { FaHome, FaList, FaUsers } from "react-icons/fa";
+import { FaHome, FaList, FaAddressCard } from "react-icons/fa";
 
 const Cabecalho: React.FC = () => {
   return (
@@ -16,8 +16,8 @@ const Cabecalho: React.FC = () => {
           <Link href="/funcionalidades" className="nav-link">
             <FaList /> Funcionalidades
           </Link>
-          <Link href="/integrantes" className="nav-link">
-            <FaUsers /> Equipe
+          <Link href="/dashboard" className="nav-link">
+            <FaAddressCard /> Dashboard
           </Link>
         </nav>
       </div>

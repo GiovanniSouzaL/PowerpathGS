@@ -11,3 +11,9 @@ export type ChargingPoint = {
   AddressInfo: AddressInfo;
   ID: number;
 };
+
+export interface Activity {
+  id: string;
+  description: string;
+  time: string;
+}
