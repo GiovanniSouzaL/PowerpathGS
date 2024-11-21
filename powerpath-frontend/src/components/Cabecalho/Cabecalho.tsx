@@ -1,8 +1,7 @@
-import React from "react";
 import Link from "next/link";
 import { FaHome, FaList, FaAddressCard } from "react-icons/fa";
 
-const Cabecalho: React.FC = () => {
+function Cabecalho() {
   return (
     <header className="header">
       <div className="header-container">
@@ -23,6 +22,6 @@ const Cabecalho: React.FC = () => {
       </div>
     </header>
   );
-};
+}
 
 export default Cabecalho;

@@ -1,58 +1,85 @@
-"use client"; // Marca o componente como Client Component
+"use client";
 
-import React, { useState } from "react";
-import { useActivities } from "@/utils/hooks/useActivities";
 import { useRouter } from "next/navigation";
+import DashboardCard from "@/components/DashboardCard/DashboardCard";
+import { useDashboard } from "@/utils/hooks/useDashboard";
 
-const Dashboard: React.FC = () => {
+function Dashboard() {
   const router = useRouter();
-  const { activities, handleAddActivity, handleRemoveActivity } = useActivities();
-  const [newDescription, setNewDescription] = useState("");
-  const [newTime, setNewTime] = useState("");
+  const {
+    activities,
+    newDescription,
+    newTime,
+    isAuthenticated,
+    setNewDescription,
+    setNewTime,
+    addActivity,
+    handleRemoveActivity,
+  } = useDashboard();
 
-  const addActivity = () => {
-    if (!newDescription || !newTime) {
-      alert("Por favor, preencha todos os campos.");
-      return;
-    }
-    handleAddActivity(newDescription, newTime);
-    setNewDescription("");
-    setNewTime("");
-  };
-
-  const handleLogout = () => {
-    document.cookie = "auth_token=; path=/; max-age=0"; // Remove o cookie
-    router.push("/login");
-  };
+  if (!isAuthenticated) {
+    return (
+      <main className="auth-container">
+        <p className="auth-text">Verificando autenticação...</p>
+        <button onClick={() => router.push("/")} className="auth-link">
+          Voltar para a página inicial
+        </button>
+      </main>
+    );
+  }
 
   return (
     <main className="dashboard-container">
-      <section className="flex justify-end mb-4">
-        <button
-          onClick={handleLogout}
-          className="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 transition"
-        >
+      <section className="header-actions">
+        <button onClick={() => router.push("/logout")} className="btn-danger">
           Logout
         </button>
+        <button onClick={() => router.push("/map")} className="btn-primary">
+          Ir para o Mapa
+        </button>
       </section>
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <DashboardCard title="Viagens Sustentáveis" value="25" subtitle="Este mês" color="text-blue-600" />
-        <DashboardCard title="Pontos de Recarga Visitados" value="12" subtitle="Total" color="text-green-500" />
-        <DashboardCard title="Economia de CO₂" value="45 kg" subtitle="Este mês" color="text-purple-600" />
-        <DashboardCard title="Recompensas Ganhas" value="5" subtitle="Novas este mês" color="text-yellow-500" />
+      <section className="cards-grid">
+        <DashboardCard
+          title="Viagens Sustentáveis"
+          value="25"
+          subtitle="Este mês"
+          color="text-blue-500"
+          customClass="dashboard-card"
+        />
+        <DashboardCard
+          title="Pontos de Recarga Visitados"
+          value="12"
+          subtitle="Total"
+          color="text-green-500"
+          customClass="dashboard-card"
+        />
+        <DashboardCard
+          title="Economia de CO₂"
+          value="45 kg"
+          subtitle="Este mês"
+          color="text-purple-500"
+          customClass="dashboard-card"
+        />
+        <DashboardCard
+          title="Recompensas Ganhas"
+          value="5"
+          subtitle="Novas este mês"
+          color="text-yellow-500"
+          customClass="dashboard-card"
+        />
       </section>
       <section className="card">
         <h2 className="card-title">Atividades Destacadas</h2>
         <ul className="activity-list">
           {activities.map((activity) => (
-            <li key={activity.id} className="activity-item flex justify-between items-center">
+            <li key={activity.id} className="activity-item">
               <div>
-                <p className="text-gray-600">{activity.description}</p>
+                <p className="text-description">{activity.description}</p>
                 <p className="activity-time">{activity.time}</p>
               </div>
               <button
                 onClick={() => handleRemoveActivity(activity.id)}
-                className="text-red-500 hover:underline"
+                className="text-remove"
               >
                 Remover
               </button>
@@ -68,42 +95,22 @@ const Dashboard: React.FC = () => {
             placeholder="Descrição da atividade"
             value={newDescription}
             onChange={(e) => setNewDescription(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-md"
+            className="input"
           />
           <input
             type="text"
             placeholder="Quando ocorreu (ex: 2 horas atrás)"
             value={newTime}
             onChange={(e) => setNewTime(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-md"
+            className="input"
           />
-          <button
-            onClick={addActivity}
-            className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
-          >
+          <button onClick={addActivity} className="btn-primary">
             Adicionar
           </button>
         </div>
       </section>
     </main>
   );
-};
-
-interface DashboardCardProps {
-  title: string;
-  value: string;
-  subtitle: string;
-  color: string;
 }
-
-const DashboardCard: React.FC<DashboardCardProps> = ({ title, value, subtitle, color }) => {
-  return (
-    <div className="card">
-      <h2 className="card-title">{title}</h2>
-      <p className={`card-value ${color}`}>{value}</p>
-      <p className="card-subtitle">{subtitle}</p>
-    </div>
-  );
-};
 
 export default Dashboard;

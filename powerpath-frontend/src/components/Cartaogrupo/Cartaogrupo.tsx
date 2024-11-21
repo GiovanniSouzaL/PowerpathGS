@@ -1,16 +1,7 @@
-import React from "react";
 import Image from "next/image";
+import { Integrante } from "@/types/types";
 
-type Integrante = {
-  rm: string;
-  turma: string;
-  foto: string;
-  github: string;
-  linkedin: string;
-  nome: string;
-};
-
-const TeamCard: React.FC<{ integrante: Integrante }> = ({ integrante }) => {
+function TeamCard({ integrante }: { integrante: Integrante }) {
   return (
     <div className="team-card">
       <Image
@@ -34,6 +25,6 @@ const TeamCard: React.FC<{ integrante: Integrante }> = ({ integrante }) => {
       </div>
     </div>
   );
-};
+}
 
 export default TeamCard;

@@ -3,40 +3,43 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-function LoginPage() {
+function RegisterPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
+  const handleRegister = () => {
+    if (!email || !password) {
+      alert("Por favor, preencha todos os campos.");
+      return;
+    }
+
+    // Garante que `users` é sempre um array
     const storedUsers = localStorage.getItem("users");
     const users = Array.isArray(JSON.parse(storedUsers || "[]"))
       ? JSON.parse(storedUsers || "[]")
       : [];
 
-    const user = users.find(
-      (user: { email: string; password: string }) =>
-        user.email === email && user.password === password
-    );
+    const userExists = users.find((user: { email: string }) => user.email === email);
 
-    if (!user) {
-      alert("E-mail ou senha inválidos.");
+    if (userExists) {
+      alert("Este e-mail já está registrado.");
       return;
     }
 
-    localStorage.setItem("auth_token", "valid_token");
-    alert("Login bem-sucedido!");
-    router.push("/dashboard");
-  };
+    // Adiciona o novo usuário e salva no localStorage
+    const newUser = { email, password };
+    const updatedUsers = [...users, newUser];
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
 
-  const navigateToRegister = () => {
-    router.push("/register");
+    alert("Usuário registrado com sucesso!");
+    router.push("/login");
   };
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-6 rounded-lg shadow-md">
-        <h1 className="text-2xl font-semibold text-center mb-4">Login</h1>
+        <h1 className="text-2xl font-semibold text-center mb-4">Registrar</h1>
         <input
           type="email"
           placeholder="E-mail"
@@ -51,18 +54,12 @@ function LoginPage() {
           onChange={(e) => setPassword(e.target.value)}
           className="input"
         />
-        <button onClick={handleLogin} className="btn-primary">
-          Entrar
+        <button onClick={handleRegister} className="btn-primary">
+          Registrar
         </button>
-        <p
-          onClick={navigateToRegister}
-          className="text-center text-blue-500 mt-4 cursor-pointer hover:underline"
-        >
-          Não tem uma conta? Registre-se
-        </p>
       </div>
     </main>
   );
 }
 
-export default LoginPage;
+export default RegisterPage;

@@ -1,5 +1,4 @@
 import TeamCard from "@/components/Cartaogrupo/Cartaogrupo";
-import React from "react";
 
 const integrantes = [
   {
@@ -28,7 +27,7 @@ const integrantes = [
   },
 ];
 
-const TeamPage: React.FC = () => {
+function TeamPage() {
   return (
     <div className="team-container">
       <h1 className="team-title">Nosso Time</h1>
@@ -39,6 +38,6 @@ const TeamPage: React.FC = () => {
       </div>
     </div>
   );
-};
+}
 
 export default TeamPage;

@@ -1,8 +1,7 @@
-import React from "react";
-import { FaGithub, FaLinkedin, FaUsers } from "react-icons/fa";
+import { FaGithub, FaUsers } from "react-icons/fa";
 import Link from "next/link";
 
-const Rodape: React.FC = () => {
+function Rodape() {
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -11,9 +10,6 @@ const Rodape: React.FC = () => {
           <a href="https://github.com/usuario/projeto" target="_blank" rel="noopener noreferrer">
             <FaGithub className="social-icon" /> GitHub do Projeto
           </a>
-          <a href="https://linkedin.com/company/empresa" target="_blank" rel="noopener noreferrer">
-            <FaLinkedin className="social-icon" /> LinkedIn
-          </a>
           <Link href="/integrantes" className="social-icon">
             <FaUsers className="social-icon" /> Equipe
           </Link>
@@ -21,6 +17,6 @@ const Rodape: React.FC = () => {
       </div>
     </footer>
   );
-};
+}
 
 export default Rodape;
